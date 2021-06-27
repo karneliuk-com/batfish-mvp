@@ -21,17 +21,26 @@ if __name__ == "__main__":
     load_questions()
 
     # Running questions
-    print("ANALYSIS // routes()")
-    r1 = bfq.routes().answer().frame()
+    print("RAW // bgpProcessConfiguration()")
+    r1 = bfq.bgpProcessConfiguration().answer().frame()
     print(r1)
 
-    print("ANALYSIS // bgpRib()")
-    r2 = bfq.bgpRib().answer().frame()
+    print("RAW // bgpPeerConfiguration()")
+    r2 = bfq.bgpPeerConfiguration().answer().frame()
     print(r2)
 
-    print("ANALYSIS // lpmRoutes()")
-    r3 = bfq.lpmRoutes(ip='10.0.255.22').answer().frame()
+    print("ANALYSIS // bgpSessionCompatibility()")
+    r3 = bfq.bgpSessionCompatibility().answer().frame()
     print(r3)
+
+    print("ANALYSIS // bgpSessionStatus()")
+    r4 = bfq.bgpSessionStatus().answer().frame()
+    print(r4)
+#    print(r4[(r4["Established_Status"] != "ESTABLISHED")])
+
+    print("ANALYSIS // bgpEdges()")
+    r5 = bfq.bgpEdges().answer().frame()
+    print(r5)
 
     # Saving output
     if not os.path.exists(output_dir):
@@ -40,3 +49,5 @@ if __name__ == "__main__":
     r1.to_csv(f"{output_dir}/r1.csv")
     r2.to_csv(f"{output_dir}/r2.csv")
     r3.to_csv(f"{output_dir}/r3.csv")
+    r4.to_csv(f"{output_dir}/r4.csv")
+    r5.to_csv(f"{output_dir}/r5.csv")

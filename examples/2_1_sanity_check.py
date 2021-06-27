@@ -21,17 +21,18 @@ if __name__ == "__main__":
     load_questions()
 
     # Running questions
-    print("ANALYSIS // routes()")
-    r1 = bfq.routes().answer().frame()
+    r1 = bfq.unusedStructures().answer().frame()
     print(r1)
 
-    print("ANALYSIS // bgpRib()")
-    r2 = bfq.bgpRib().answer().frame()
+    r2 = bfq.undefinedReferences().answer().frame()
     print(r2)
 
-    print("ANALYSIS // lpmRoutes()")
-    r3 = bfq.lpmRoutes(ip='10.0.255.22').answer().frame()
+    r3 = bfq.namedStructures().answer().frame()
     print(r3)
+
+    r4 = bfq.definedStructures().answer().frame()
+    print(r4)
+
 
     # Saving output
     if not os.path.exists(output_dir):
@@ -40,3 +41,4 @@ if __name__ == "__main__":
     r1.to_csv(f"{output_dir}/r1.csv")
     r2.to_csv(f"{output_dir}/r2.csv")
     r3.to_csv(f"{output_dir}/r3.csv")
+    r4.to_csv(f"{output_dir}/r4.csv")
